@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="rgba_color.cpp" />
+    <ClCompile Include="test_renderer_fill.cpp" />
+    <ClCompile Include="xinterchangebuffer.cpp" />
+    <ClCompile Include="cairo\win32\cairo_renderer_win32.cpp">
+      <Filter>cairo\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cairo\cairo_renderer-graphicsmagickinit.cpp">
+      <Filter>cairo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="test_process.h" />
+    <ClInclude Include="test_renderer.h" />
+    <ClInclude Include="xbrushes.h" />
+    <ClInclude Include="xbrushes_impl.h" />
+    <ClInclude Include="xcolor.h" />
+    <ClInclude Include="xdiagnostics.h" />
+    <ClInclude Include="xgraphicsmath.h" />
+    <ClInclude Include="xgraphicsmath_impl.h" />
+    <ClInclude Include="xgraphicsmathfloat.h" />
+    <ClInclude Include="xgraphicsmathfloat_impl.h" />
+    <ClInclude Include="xinput.h" />
+    <ClInclude Include="xinterchangebuffer.h" />
+    <ClInclude Include="xio2d.h" />
+    <ClInclude Include="xio2d_impl.h" />
+    <ClInclude Include="xpath.h" />
+    <ClInclude Include="xpath_impl.h" />
+    <ClInclude Include="xpathbuilder_impl.h" />
+    <ClInclude Include="xsurfaces.h" />
+    <ClInclude Include="xsurfaces_enums.h" />
+    <ClInclude Include="xsurfaces_impl.h" />
+    <ClInclude Include="xsurfacesprops_impl.h" />
+    <ClInclude Include="xsystemheaders.h" />
+    <ClInclude Include="xtext.h" />
+    <ClInclude Include="cairo\win32\io2d.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\io2d_cairo_win32.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_error.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_main.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_output_surface.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_surfaces.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_surfaces_impl.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_unmanaged_output_surface.h">
+      <Filter>cairo\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_brushes_impl.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_helpers.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_paths_impl.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_surface_state_props_impl.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_surfaces_image_impl.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xcairo_surfaces_impl.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+    <ClInclude Include="cairo\xio2d_cairo_main.h">
+      <Filter>cairo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="cairo">
+      <UniqueIdentifier>{7b029019-fb39-4733-90b0-d157f7fdee53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cairo\win32">
+      <UniqueIdentifier>{44f606da-6778-47f5-8dc5-26a15d84be36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

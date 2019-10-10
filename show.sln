@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "show", "show.vcxproj", "{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "io2d", "io2d\io2d.vcxproj", "{666B7110-5287-4820-AFF5-45F40C5A5FAB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StPetersburg", "StPetersburg.vcxproj", "{5D6C0754-5A7D-4AC0-822D-080DC66CDBBA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "show", "show\show.vcxproj", "{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB} = {666B7110-5287-4820-AFF5-45F40C5A5FAB}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StPetersburg", "StPetersburg\StPetersburg.vcxproj", "{5D6C0754-5A7D-4AC0-822D-080DC66CDBBA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD} = {F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Debug|x64.ActiveCfg = Debug|x64
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Debug|x64.Build.0 = Debug|x64
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Debug|x86.ActiveCfg = Debug|Win32
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Debug|x86.Build.0 = Debug|Win32
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Release|x64.ActiveCfg = Release|x64
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Release|x64.Build.0 = Release|x64
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Release|x86.ActiveCfg = Release|Win32
+		{666B7110-5287-4820-AFF5-45F40C5A5FAB}.Release|x86.Build.0 = Release|Win32
 		{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}.Debug|x64.ActiveCfg = Debug|x64
 		{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}.Debug|x64.Build.0 = Debug|x64
 		{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}.Debug|x86.ActiveCfg = Debug|Win32

@@ -1,3 +1,5 @@
+#include "StPetersburg.h"
+
 #include "Slide.h"
 
 namespace
@@ -25,7 +27,7 @@ namespace
 	bool polar::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_image_brush = image_surface{ "C:\\Users\\elgui\\source\\P0267_Master\\StPetersburg\\Slides\\Geometry St Petersburg (14).png",
+		m_image_brush = image_surface{ pres::res + "Geometry St Petersburg (14).png",
 										std::experimental::io2d::image_file_format::png,
 										std::experimental::io2d::format::argb32 };
 		auto image_size = display_point{ 960, 540 };

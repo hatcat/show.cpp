@@ -20,36 +20,36 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}</ProjectGuid>
-    <RootNamespace>show</RootNamespace>
+    <ProjectGuid>{666B7110-5287-4820-AFF5-45F40C5A5FAB}</ProjectGuid>
+    <RootNamespace>P0267</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -76,6 +76,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\elgui\source\P0267_Master\P0267\cairo;C:\Users\elgui\source\P0267_Master\P0267;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,6 +89,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\elgui\source\P0267_Master\P0267\cairo;C:\Users\elgui\source\P0267_Master\P0267;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,6 +104,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\elgui\source\P0267_Master\P0267\cairo;C:\Users\elgui\source\P0267_Master\P0267;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,6 +121,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\elgui\source\P0267_Master\P0267\cairo;C:\Users\elgui\source\P0267_Master\P0267;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,14 +131,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Show.h" />
-    <ClInclude Include="Slide.h" />
-    <ClInclude Include="Window.h" />
+    <ClCompile Include="cairo\cairo_renderer-graphicsmagickinit.cpp" />
+    <ClCompile Include="cairo\win32\cairo_renderer_win32.cpp" />
+    <ClCompile Include="rgba_color.cpp" />
+    <ClCompile Include="test_renderer_fill.cpp" />
+    <ClCompile Include="xinterchangebuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Show.cpp" />
-    <ClCompile Include="Slide.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClInclude Include="cairo\win32\io2d.h" />
+    <ClInclude Include="cairo\win32\io2d_cairo_win32.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_error.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_main.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_output_surface.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_surfaces.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_surfaces_impl.h" />
+    <ClInclude Include="cairo\win32\xio2d_cairo_win32_unmanaged_output_surface.h" />
+    <ClInclude Include="cairo\xcairo.h" />
+    <ClInclude Include="cairo\xcairo_brushes_impl.h" />
+    <ClInclude Include="cairo\xcairo_helpers.h" />
+    <ClInclude Include="cairo\xcairo_paths_impl.h" />
+    <ClInclude Include="cairo\xcairo_surfaces_image_impl.h" />
+    <ClInclude Include="cairo\xcairo_surfaces_impl.h" />
+    <ClInclude Include="cairo\xcairo_surface_state_props_impl.h" />
+    <ClInclude Include="cairo\xio2d_cairo_main.h" />
+    <ClInclude Include="test_process.h" />
+    <ClInclude Include="test_renderer.h" />
+    <ClInclude Include="xbrushes.h" />
+    <ClInclude Include="xbrushes_impl.h" />
+    <ClInclude Include="xcolor.h" />
+    <ClInclude Include="xdiagnostics.h" />
+    <ClInclude Include="xgraphicsmath.h" />
+    <ClInclude Include="xgraphicsmathfloat.h" />
+    <ClInclude Include="xgraphicsmathfloat_impl.h" />
+    <ClInclude Include="xgraphicsmath_impl.h" />
+    <ClInclude Include="xinput.h" />
+    <ClInclude Include="xinterchangebuffer.h" />
+    <ClInclude Include="xio2d.h" />
+    <ClInclude Include="xio2d_impl.h" />
+    <ClInclude Include="xpath.h" />
+    <ClInclude Include="xpathbuilder_impl.h" />
+    <ClInclude Include="xpath_impl.h" />
+    <ClInclude Include="xsurfaces.h" />
+    <ClInclude Include="xsurfacesprops_impl.h" />
+    <ClInclude Include="xsurfaces_enums.h" />
+    <ClInclude Include="xsurfaces_impl.h" />
+    <ClInclude Include="xsystemheaders.h" />
+    <ClInclude Include="xtext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
