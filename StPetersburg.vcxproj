@@ -148,15 +148,7 @@
     <ClCompile Include="NumberLine.cpp" />
     <ClCompile Include="PictureSlide.cpp" />
     <ClCompile Include="Polar.cpp" />
-    <ClCompile Include="Show.cpp" />
-    <ClCompile Include="Slide.cpp" />
     <ClCompile Include="StraightLine.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Show.h" />
-    <ClInclude Include="Slide.h" />
-    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
