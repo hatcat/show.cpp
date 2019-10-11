@@ -8,6 +8,7 @@
     <ClCompile Include="Polar.cpp" />
     <ClCompile Include="StraightLine.cpp" />
     <ClCompile Include="StraightLine2.cpp" />
+    <ClCompile Include="Circle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

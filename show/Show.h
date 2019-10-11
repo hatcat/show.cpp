@@ -151,8 +151,8 @@ Slide animations
 01 *11 NumberLine
 02 *12 Axes
 03 *13 Polar
-04 14 StraightLine
-05 15 StraightLine2
+04 *14 StraightLine
+05 *15 StraightLine2
 06 16 Parabola
 07 17 Circle
 08 18 Circle2

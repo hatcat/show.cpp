@@ -21,4 +21,17 @@ namespace show
 	};
 
 	std::vector<slide*>& slide_show();
+
+	class background_image
+	{
+	public:
+		background_image(std::string const&);
+		background_image(std::string&&);
+		void prepare();
+		void render(unmanaged_output_surface&);
+	private:
+		std::string		m_filename;
+		brush			m_image_brush;
+		render_props	m_rp;
+	};
 }

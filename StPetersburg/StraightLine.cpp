@@ -14,34 +14,27 @@ namespace
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
 	private:
-		brush			m_image_brush;
-		render_props	m_rp;
+		show::background_image m_bg;
 		std::chrono::time_point<std::chrono::steady_clock> m_entry_point;
 	};
 
 	straight_line::straight_line(show::presentation p)
 		: show::slide(p)
-		, m_image_brush{ rgba_color::black }
+		, m_bg(pres::res + "Geometry St Petersburg (14).png")
 	{}
 
 	bool straight_line::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_image_brush = image_surface{ pres::res + "Geometry St Petersburg (14).png",
-										std::experimental::io2d::image_file_format::png,
-										std::experimental::io2d::format::argb32 };
-		auto image_size = display_point{ 960, 540 };
-		auto x_scale = 1920.f / image_size.x();
-		auto y_scale = 1080.f / image_size.y();
-		m_rp.surface_matrix(matrix_2d::create_scale(point_2d{ x_scale, y_scale }));
+		m_bg.prepare();
 		return true;
 	}
 
-	void straight_line::render(unmanaged_output_surface& ds)
+	void straight_line::render(unmanaged_output_surface& uos)
 	{
 		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
 
-		ds.paint(m_image_brush, std::nullopt, m_rp);
+		m_bg.render(uos);
 
 		// Draw the axes, then draw the line. x = 180 -> 1710, y = 970 -> 230, line = 665,970 -> 1035, 230
 		auto x_axis = path_builder{};
@@ -93,15 +86,15 @@ namespace
 			sample_line.new_figure(point_2d{ 665.f, 970.f });
 			sample_line.line(point_2d{ 1035.f, 230.f });
 		}
-		ds.stroke(axis_brush, x_axis, std::nullopt, stroke_props{ 4 });
-		ds.stroke(axis_brush, y_axis, std::nullopt, stroke_props{ 4 });
-		ds.stroke(line_brush, sample_line, std::nullopt, stroke_props{ 4 });
+		uos.stroke(axis_brush, x_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(axis_brush, y_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(line_brush, sample_line, std::nullopt, stroke_props{ 4 });
 	}
 
 	bool straight_line::exit()
 	{
 		return true;
 	}
-}
 
-straight_line s014{ show::presentation::SLIDE_014 };
+	straight_line s014{ show::presentation::SLIDE_014 };
+}

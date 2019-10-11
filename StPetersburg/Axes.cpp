@@ -14,41 +14,34 @@ namespace
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
 	private:
-		brush			m_image_brush;
-		render_props	m_rp;
+		show::background_image m_bg;
 		std::chrono::time_point<std::chrono::steady_clock> m_entry_point;
 	};
 
 	axes::axes(show::presentation p)
 		: show::slide(p)
-		, m_image_brush{ rgba_color::black }
+		, m_bg(pres::res + "Geometry St Petersburg (12).png")
 	{}
 
 	bool axes::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_image_brush = image_surface{ pres::res + "Geometry St Petersburg (12).png",
-										std::experimental::io2d::image_file_format::png,
-										std::experimental::io2d::format::argb32 };
-		auto image_size = display_point{ 960, 540 };
-		auto x_scale = 1920.f / image_size.x();
-		auto y_scale = 1080.f / image_size.y();
-		m_rp.surface_matrix(matrix_2d::create_scale(point_2d{ x_scale, y_scale }));
+		m_bg.prepare();
 		return true;
 	}
 
-	void axes::render(unmanaged_output_surface& ds)
+	void axes::render(unmanaged_output_surface& uos)
 	{
 		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
 
-		ds.paint(m_image_brush, std::nullopt, m_rp);
+		m_bg.render(uos);
 
 		auto x_axis = path_builder{};
 		x_axis.clear();
 		x_axis.new_figure(point_2d{ 180.f, 600.f });
 		x_axis.line(point_2d{ 1710.f, 600.f });
 		auto line_brush = brush{ rgba_color::cornflower_blue };
-		ds.stroke(line_brush, x_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(line_brush, x_axis, std::nullopt, stroke_props{ 4 });
 
 		auto y_axis = path_builder{};
 		y_axis.clear();
@@ -68,13 +61,13 @@ namespace
 			y_axis.line(point_2d{ 930.f, 970.f });
 		}
 
-		ds.stroke(line_brush, y_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(line_brush, y_axis, std::nullopt, stroke_props{ 4 });
 	}
 
 	bool axes::exit()
 	{
 		return true;
 	}
-}
 
-axes s012{ show::presentation::SLIDE_012 };
+	axes s012{ show::presentation::SLIDE_012 };
+}

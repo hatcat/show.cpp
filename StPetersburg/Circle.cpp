@@ -6,10 +6,10 @@ namespace
 {
 	using namespace std::experimental::io2d;
 
-	class number_line : public show::slide
+	class circle : public show::slide
 	{
 	public:
-		number_line(show::presentation name);
+		circle(show::presentation name);
 		bool enter() override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
@@ -18,19 +18,19 @@ namespace
 		std::chrono::time_point<std::chrono::steady_clock> m_entry_point;
 	};
 
-	number_line::number_line(show::presentation p)
+	circle::circle(show::presentation p)
 		: show::slide(p)
-		, m_bg(pres::res + "Geometry St Petersburg (11).png")
+		, m_bg(pres::res + "Geometry St Petersburg (17).png")
 	{}
 
-	bool number_line::enter()
+	bool circle::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
 		m_bg.prepare();
 		return true;
 	}
 
-	void number_line::render(unmanaged_output_surface& uos)
+	void circle::render(unmanaged_output_surface& uos)
 	{
 		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
 
@@ -38,24 +38,29 @@ namespace
 
 		auto path = path_builder{};
 		path.clear();
-		if (time_in_slide <= 1530)
+		path.new_figure(point_2d{ 960.f, 600.f });
+		if (time_in_slide <= 1000)
 		{
-			auto displacement = 765.f - (time_in_slide / 2);
-			path.new_figure(point_2d{ 180.f + displacement, 600.f });
-			path.line(point_2d{ 1710.f - displacement, 600.f });
+			path.line(point_2d{ 960.f + ((1310.f - 960.f) * time_in_slide / 1000), 600.f });
+		}
+		else if (time_in_slide <= 3000)
+		{
+			path.line(point_2d{ 1310.f, 600.f });
+			path.arc(point_2d{ 350.f, 350.f }, two_pi<float> * (time_in_slide - 1000) / 2000, two_pi<float>);
 		}
 		else
 		{
-			path.new_figure(point_2d{ 180.f, 600.f });
-			path.line(point_2d{ 1710.f, 600.f });
+			path.line(point_2d{ 1310.f, 600.f });
+			path.arc(point_2d{ 350.f, 350.f }, two_pi<float>, two_pi<float>);
 		}
 		uos.stroke(brush{ rgba_color::cornflower_blue }, path, std::nullopt, stroke_props{ 4 });
 	}
 
-	bool number_line::exit()
+	bool circle::exit()
 	{
 		return true;
 	}
 
-	number_line s011{ show::presentation::SLIDE_011 };
+	circle s017{ show::presentation::SLIDE_017 };
 }
+
