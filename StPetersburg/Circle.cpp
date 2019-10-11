@@ -36,24 +36,56 @@ namespace
 
 		m_bg.render(uos);
 
-		auto path = path_builder{};
-		path.clear();
-		path.new_figure(point_2d{ 960.f, 600.f });
+		// Draw the axes, then draw the line. x = 180 -> 1710, y = 970 -> 230, line = 665,970 -> 1035, 230
+		auto x_axis = path_builder{};
+		x_axis.clear();
+
+		auto y_axis = path_builder{};
+		y_axis.clear();
+
+		auto circle_path = path_builder{};
+		circle_path.clear();
+		circle_path.new_figure(point_2d{ 1180.f, 600.f });
+
+		auto axis_brush = brush{ rgba_color::cornflower_blue };
+		auto line_brush = brush{ rgba_color::green };
+
 		if (time_in_slide <= 1000)
 		{
-			path.line(point_2d{ 960.f + ((1310.f - 960.f) * time_in_slide / 1000), 600.f });
+			auto fraction = (time_in_slide) / 1000.f;
+
+			auto x_delta = 765.f * fraction;
+			x_axis.new_figure(point_2d{ 945.f - x_delta, 600.f });
+			x_axis.line(point_2d{ 945.f + x_delta, 600.f });
+
+			auto y_delta = 370.f * fraction;
+			y_axis.new_figure(point_2d{ 930.f, 600.f - y_delta });
+			y_axis.line(point_2d{ 930.f, 600.f + y_delta });
 		}
-		else if (time_in_slide <= 3000)
+		else if (time_in_slide <= 2000)
 		{
-			path.line(point_2d{ 1310.f, 600.f });
-			path.arc(point_2d{ 350.f, 350.f }, two_pi<float> * (time_in_slide - 1000) / 2000, two_pi<float>);
+			x_axis.new_figure(point_2d{ 180.f, 600.f });
+			x_axis.line(point_2d{ 1710.f, 600.f });
+
+			y_axis.new_figure(point_2d{ 930.f, 230.f });
+			y_axis.line(point_2d{ 930.f, 970.f });
+
+			auto fraction = (time_in_slide - 1000.f) / 1000.f;
+			circle_path.arc(point_2d{ 250.f, 250.f }, two_pi<float> * fraction, two_pi<float>);
 		}
 		else
 		{
-			path.line(point_2d{ 1310.f, 600.f });
-			path.arc(point_2d{ 350.f, 350.f }, two_pi<float>, two_pi<float>);
+			x_axis.new_figure(point_2d{ 180.f, 600.f });
+			x_axis.line(point_2d{ 1710.f, 600.f });
+
+			y_axis.new_figure(point_2d{ 930.f, 230.f });
+			y_axis.line(point_2d{ 930.f, 970.f });
+
+			circle_path.arc(point_2d{ 250.f, 250.f }, two_pi<float>, two_pi<float>);
 		}
-		uos.stroke(brush{ rgba_color::cornflower_blue }, path, std::nullopt, stroke_props{ 4 });
+		uos.stroke(axis_brush, x_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(axis_brush, y_axis, std::nullopt, stroke_props{ 4 });
+		uos.stroke(line_brush, circle_path, std::nullopt, stroke_props{ 4 });
 	}
 
 	bool circle::exit()

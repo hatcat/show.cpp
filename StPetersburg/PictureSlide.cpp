@@ -59,7 +59,7 @@ namespace
 	//picture_slide s014{ show::presentation::SLIDE_014, pres::res + "Geometry St Petersburg (14).png" }; // StraightLine
 	//picture_slide s015{ show::presentation::SLIDE_015, pres::res + "Geometry St Petersburg (15).png" }; // StraightLine2
 	picture_slide s016{ show::presentation::SLIDE_016, pres::res + "Geometry St Petersburg (16).png" };
-	picture_slide s017{ show::presentation::SLIDE_017, pres::res + "Geometry St Petersburg (17).png" };
+	//picture_slide s017{ show::presentation::SLIDE_017, pres::res + "Geometry St Petersburg (17).png" }; // Circle
 	picture_slide s018{ show::presentation::SLIDE_018, pres::res + "Geometry St Petersburg (18).png" };
 	picture_slide s019{ show::presentation::SLIDE_019, pres::res + "Geometry St Petersburg (19).png" };
 	picture_slide s020{ show::presentation::SLIDE_020, pres::res + "Geometry St Petersburg (20).png" };
