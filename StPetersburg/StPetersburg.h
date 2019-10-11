@@ -4,5 +4,5 @@
 
 namespace pres
 {
-	inline auto res = std::string{ "C:\\Users\\elgui\\source\\show.cpp\\res\\" };
+	inline auto res = std::string{ "C:\\Users\\Guy.Davidson\\Documents\\GitHub\\show.cpp\\res\\" };
 }

@@ -67,7 +67,7 @@ picture_slide s010{ show::presentation::SLIDE_010, pres::res + "Geometry St Pete
 //picture_slide s012{ show::presentation::SLIDE_012, pres::res + "Geometry St Petersburg (12).png" }; // Graph
 //picture_slide s013{ show::presentation::SLIDE_013, pres::res + "Geometry St Petersburg (13).png" }; // Polar
 //picture_slide s014{ show::presentation::SLIDE_014, pres::res + "Geometry St Petersburg (14).png" }; // StraightLine
-picture_slide s015{ show::presentation::SLIDE_015, pres::res + "Geometry St Petersburg (15).png" };
+//picture_slide s015{ show::presentation::SLIDE_015, pres::res + "Geometry St Petersburg (15).png" }; // StraightLine2
 picture_slide s016{ show::presentation::SLIDE_016, pres::res + "Geometry St Petersburg (16).png" };
 picture_slide s017{ show::presentation::SLIDE_017, pres::res + "Geometry St Petersburg (17).png" };
 picture_slide s018{ show::presentation::SLIDE_018, pres::res + "Geometry St Petersburg (18).png" };

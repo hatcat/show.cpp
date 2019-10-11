@@ -6,10 +6,10 @@ namespace
 {
 	using namespace std::experimental::io2d;
 
-	class polar : public show::slide
+	class straight_line : public show::slide
 	{
 	public:
-		polar(show::presentation name);
+		straight_line(show::presentation name);
 		bool enter() override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
@@ -19,12 +19,12 @@ namespace
 		std::chrono::time_point<std::chrono::steady_clock> m_entry_point;
 	};
 
-	polar::polar(show::presentation p)
+	straight_line::straight_line(show::presentation p)
 		: show::slide(p)
 		, m_image_brush{ rgba_color::black }
 	{}
 
-	bool polar::enter()
+	bool straight_line::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
 		m_image_brush = image_surface{ pres::res + "Geometry St Petersburg (14).png",
@@ -37,7 +37,7 @@ namespace
 		return true;
 	}
 
-	void polar::render(unmanaged_output_surface& ds)
+	void straight_line::render(unmanaged_output_surface& ds)
 	{
 		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
 
@@ -98,10 +98,10 @@ namespace
 		ds.stroke(line_brush, sample_line, std::nullopt, stroke_props{ 4 });
 	}
 
-	bool polar::exit()
+	bool straight_line::exit()
 	{
 		return true;
 	}
 }
 
-polar s014{ show::presentation::SLIDE_014 };
+straight_line s014{ show::presentation::SLIDE_014 };

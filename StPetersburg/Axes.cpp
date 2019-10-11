@@ -6,10 +6,10 @@ namespace
 {
 	using namespace std::experimental::io2d;
 
-	class number_line : public show::slide
+	class axes : public show::slide
 	{
 	public:
-		number_line(show::presentation name);
+		axes(show::presentation name);
 		bool enter() override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
@@ -19,12 +19,12 @@ namespace
 		std::chrono::time_point<std::chrono::steady_clock> m_entry_point;
 	};
 
-	number_line::number_line(show::presentation p)
+	axes::axes(show::presentation p)
 		: show::slide(p)
 		, m_image_brush{ rgba_color::black }
 	{}
 
-	bool number_line::enter()
+	bool axes::enter()
 	{
 		m_entry_point = std::chrono::steady_clock::now();
 		m_image_brush = image_surface{ pres::res + "Geometry St Petersburg (12).png",
@@ -37,7 +37,7 @@ namespace
 		return true;
 	}
 
-	void number_line::render(unmanaged_output_surface& ds)
+	void axes::render(unmanaged_output_surface& ds)
 	{
 		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
 
@@ -71,10 +71,10 @@ namespace
 		ds.stroke(line_brush, y_axis, std::nullopt, stroke_props{ 4 });
 	}
 
-	bool number_line::exit()
+	bool axes::exit()
 	{
 		return true;
 	}
 }
 
-number_line s012{ show::presentation::SLIDE_012 };
+axes s012{ show::presentation::SLIDE_012 };

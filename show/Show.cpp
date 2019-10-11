@@ -113,8 +113,6 @@ namespace
 void show::show::update(unmanaged_output_surface& s)
 {
 	static auto first_entry = slide_show()[presentation(nav.current_slide())]->enter();
-	static auto last_update = std::chrono::steady_clock::now();
-	auto now = std::chrono::steady_clock::now();
 
 	get_key_state();
 	nav.check();

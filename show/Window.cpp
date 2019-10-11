@@ -89,27 +89,7 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 {
 	const static auto lrZero = static_cast<LRESULT>(0);
 	switch (msg) {
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunreachable-code-break"
-#endif
-	case WM_CREATE:
-	{
-		m_hdc = GetDC(m_hwnd);
-		default_graphics_surfaces::surfaces::unmanaged_surface_context_type unmanaged_context;
-		unmanaged_context.hInstance = m_hInstance;
-		unmanaged_context.hwnd = m_hwnd;
-		unmanaged_context.hdc = m_hdc;
-		m_outputSfc = std::experimental::io2d::unmanaged_output_surface(default_graphics_surfaces::surfaces::create_unmanaged_output_surface(unmanaged_context, m_w, m_h, m_fmt, m_scl));
-		m_outputSfc.display_dimensions(display_point{ m_w, m_h });
-		m_outputSfc.draw_callback([&](std::experimental::io2d::unmanaged_output_surface& uos) { m_show.update(uos); });
-		m_canDraw = true;
-		// Return 0 to allow the window to proceed in the creation process.
-		return lrZero;
-	} break;
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
+
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code-break"
@@ -126,7 +106,6 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 		m_outputSfc.data()->data.hwnd = m_hwnd;
 		return lrZero;
 	} break;
-
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -272,7 +251,7 @@ int show::Win32Win::Run()
 				auto displayDimensions = display_point{ width, height };
 				m_outputSfc.display_dimensions(displayDimensions);
 
-				if (display_point{ width, height } != data.data.display_dimensions)//m_outputSfc.dimensions())
+				if (display_point{ width, height } != data.data.display_dimensions)
 				{
 					if (m_outputSfc.has_size_change_callback())
 					{

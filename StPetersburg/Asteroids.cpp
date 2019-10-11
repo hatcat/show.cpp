@@ -1062,7 +1062,6 @@ namespace
 	{
 		return true;
 	}
-
-	rocks_in_space s079(show::presentation::SLIDE_079);
 }
 
+rocks_in_space s079(show::presentation::SLIDE_079);
