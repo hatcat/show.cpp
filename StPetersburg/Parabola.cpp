@@ -52,19 +52,22 @@ namespace
 		{
 			auto fraction = (time_in_slide) / 1000.f;
 
-			auto x_delta = 750.f * fraction;
-			x_axis.new_figure(point_2d{ 930.f - x_delta, 330.f });
-			x_axis.line(point_2d{ 930.f + x_delta, 330.f });
+			auto x1 = show::delta(930.f, 180.f, fraction);
+			auto x2 = show::delta(930.f, 1680.f, fraction);
+			x_axis.new_figure(point_2d{ x1, 330.f });
+			x_axis.line(point_2d{ x2, 330.f });
 
-			auto y_delta = (970.f - 230.f) * fraction;
+			auto y = show::delta(230.f, 970.f, fraction);
 			y_axis.new_figure(point_2d{ 930.f, 230.f });
-			y_axis.line(point_2d{ 930.f, 230.f + y_delta });
+			y_axis.line(point_2d{ 930.f, y });
 
-			auto p_delta = 330.f * fraction;
-			auto p_y_delta = (970.f - 330.f) * fraction;
-			auto p_control_delta = 640.f - (640.f * fraction);
-			parabola_line.new_figure(point_2d{ 930.f - p_delta, 330.f + p_y_delta });
-			parabola_line.quadratic_curve(point_2d{ 930.f, -310.f + p_control_delta }, point_2d{ 930.f + p_delta, 330.f + p_y_delta });
+			auto p_x1 = show::delta(930.f, 600.f, fraction);
+			auto p_x2 = show::delta(930.f, 1260.f, fraction);
+			auto p_y = show::delta(330.f, 970.f, fraction);
+			auto p_control = show::delta(330.f, -310.f, fraction);
+
+			parabola_line.new_figure(point_2d{ p_x1, p_y });
+			parabola_line.quadratic_curve(point_2d{ 930.f, p_control }, point_2d{ p_x2, p_y });
 		}
 		else
 		{

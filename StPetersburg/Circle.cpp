@@ -54,13 +54,16 @@ namespace
 		{
 			auto fraction = (time_in_slide) / 1000.f;
 
-			auto x_delta = 765.f * fraction;
-			x_axis.new_figure(point_2d{ 945.f - x_delta, 600.f });
-			x_axis.line(point_2d{ 945.f + x_delta, 600.f });
+			auto x1 = show::delta(945.f, 180.f, fraction);
+			auto x2 = show::delta(945.f, 1710.f, fraction);
 
-			auto y_delta = 370.f * fraction;
-			y_axis.new_figure(point_2d{ 930.f, 600.f - y_delta });
-			y_axis.line(point_2d{ 930.f, 600.f + y_delta });
+			x_axis.new_figure(point_2d{ x1, 600.f });
+			x_axis.line(point_2d{ x2, 600.f });
+
+			auto y1 = show::delta(600.f, 230.f, fraction);
+			auto y2 = show::delta(600.f, 970.f, fraction);
+			y_axis.new_figure(point_2d{ 930.f, y1 });
+			y_axis.line(point_2d{ 930.f, y2 });
 		}
 		else if (time_in_slide <= 2000)
 		{
@@ -71,7 +74,8 @@ namespace
 			y_axis.line(point_2d{ 930.f, 970.f });
 
 			auto fraction = (time_in_slide - 1000.f) / 1000.f;
-			circle_path.arc(point_2d{ 250.f, 250.f }, two_pi<float> * fraction, two_pi<float>);
+			auto theta = show::delta(0.f, two_pi<float>, fraction);
+			circle_path.arc(point_2d{ 250.f, 250.f }, theta, 0.f);
 		}
 		else
 		{
@@ -81,7 +85,7 @@ namespace
 			y_axis.new_figure(point_2d{ 930.f, 230.f });
 			y_axis.line(point_2d{ 930.f, 970.f });
 
-			circle_path.arc(point_2d{ 250.f, 250.f }, two_pi<float>, two_pi<float>);
+			circle_path.arc(point_2d{ 250.f, 250.f }, two_pi<float>, 0.f);
 		}
 		uos.stroke(axis_brush, x_axis, std::nullopt, stroke_props{ 4 });
 		uos.stroke(axis_brush, y_axis, std::nullopt, stroke_props{ 4 });

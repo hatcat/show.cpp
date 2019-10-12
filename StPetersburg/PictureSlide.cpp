@@ -54,7 +54,7 @@ namespace
 	picture_slide s009{ show::presentation::SLIDE_009, pres::res + "Geometry St Petersburg (9).png" };
 	picture_slide s010{ show::presentation::SLIDE_010, pres::res + "Geometry St Petersburg (10).png" };
 	//picture_slide s011{ show::presentation::SLIDE_011, pres::res + "Geometry St Petersburg (11).png" }; // NumberLine
-	//picture_slide s012{ show::presentation::SLIDE_012, pres::res + "Geometry St Petersburg (12).png" }; // Graph
+	//picture_slide s012{ show::presentation::SLIDE_012, pres::res + "Geometry St Petersburg (12).png" }; // Axes
 	//picture_slide s013{ show::presentation::SLIDE_013, pres::res + "Geometry St Petersburg (13).png" }; // Polar
 	//picture_slide s014{ show::presentation::SLIDE_014, pres::res + "Geometry St Petersburg (14).png" }; // StraightLine
 	//picture_slide s015{ show::presentation::SLIDE_015, pres::res + "Geometry St Petersburg (15).png" }; // StraightLine2

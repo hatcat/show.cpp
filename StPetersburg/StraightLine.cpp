@@ -52,28 +52,31 @@ namespace
 		if (time_in_slide <= 1000)
 		{
 			auto fraction = (time_in_slide) / 1000.f;
+			auto x1 = show::delta(945.f, 180.f, fraction);
+			auto x2 = show::delta(945.f, 1710.f, fraction);
+			auto y1 = show::delta(600.f, 230.f, fraction);
+			auto y2 = show::delta(600.f, 970.f, fraction);
 
-			auto x_delta = 765.f * fraction;
-			x_axis.new_figure(point_2d{ 945.f - x_delta, 600.f });
-			x_axis.line(point_2d{ 945.f + x_delta, 600.f });
+			x_axis.new_figure(point_2d{ x1, 600.f });
+			x_axis.line(point_2d{ x2, 600.f });
 
-			auto y_delta = 370.f * fraction;
-			y_axis.new_figure(point_2d{ 930.f, 600.f - y_delta });
-			y_axis.line(point_2d{ 930.f, 600.f + y_delta });
+			y_axis.new_figure(point_2d{ 930.f, y1 });
+			y_axis.line(point_2d{ 930.f, y2 });
 		}
 		else if (time_in_slide <= 2000)
 		{
+			auto fraction = (time_in_slide - 1000.f) / 1000.f;
+			auto x = show::delta(665.f, 1035.f, fraction);
+			auto y = show::delta(970.f, 230.f, fraction);
+
 			x_axis.new_figure(point_2d{ 180.f, 600.f });
 			x_axis.line(point_2d{ 1710.f, 600.f });
 
 			y_axis.new_figure(point_2d{ 930.f, 230.f });
 			y_axis.line(point_2d{ 930.f, 970.f });
 
-			auto fraction = (time_in_slide - 1000.f) / 1000.f;
-			auto sample_line_x_displacement = (1035.f - 665.f) * fraction;
-			auto sample_line_y_displacement = (230.f - 970.f) * fraction;
 			sample_line.new_figure(point_2d{ 665.f, 970.f });
-			sample_line.line(point_2d{ 665.f + sample_line_x_displacement, 970.f + sample_line_y_displacement });
+			sample_line.line(point_2d{ x, y });
 		}
 		else
 		{

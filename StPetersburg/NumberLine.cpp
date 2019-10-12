@@ -40,9 +40,11 @@ namespace
 		path.clear();
 		if (time_in_slide <= 1500)
 		{
-			auto displacement = show::delta(0.f, 765.f, time_in_slide / 1500.f);
-			path.new_figure(point_2d{ 945.f - displacement, 600.f });
-			path.line(point_2d{ 945.f + displacement, 600.f });
+			auto fraction = time_in_slide / 1500.f;
+			auto x1 = show::delta(945.f, 180.f, fraction);
+			auto x2 = show::delta(945.f, 1710.f, fraction);
+			path.new_figure(point_2d{ x1, 600.f });
+			path.line(point_2d{ x2, 600.f });
 		}
 		else
 		{

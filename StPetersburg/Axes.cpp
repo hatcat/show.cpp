@@ -47,10 +47,11 @@ namespace
 		y_axis.clear();
 		if (time_in_slide <= 1500)
 		{
-			auto x1 = 180.f + ((930.f - 180.f) * time_in_slide / 1500);
-			auto y1 = 600.f + ((970.f - 600.f) * time_in_slide / 1500);
-			auto x2 = 1710.f - ((1710.f - 930.f) * time_in_slide / 1500);
-			auto y2 = 600.f - ((600.f - 230.f) * time_in_slide / 1500);
+			auto fraction = time_in_slide / 1500.f;
+			auto x1 = show::delta(180.f, 930.f, fraction);
+			auto y1 = show::delta(600.f, 970.f, fraction);
+			auto x2 = show::delta(1710.f, 930.f, fraction);
+			auto y2 = show::delta(600.f, 230.f, fraction);
 			y_axis.new_figure(point_2d{ x1, y1 });
 			y_axis.line(point_2d{ x2, y2 });
 			line_brush = brush{ rgba_color::red };
