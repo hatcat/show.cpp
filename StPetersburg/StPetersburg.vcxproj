@@ -153,14 +153,28 @@
   <ItemGroup>
     <ClCompile Include="Asteroids.cpp" />
     <ClCompile Include="Axes.cpp" />
+    <ClCompile Include="BezierAnimation.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Circle2.cpp" />
+    <ClCompile Include="Circle3.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="LineSegment.cpp" />
+    <ClCompile Include="NonOrthogonalAxes.cpp" />
     <ClCompile Include="NumberLine.cpp" />
     <ClCompile Include="Parabola.cpp" />
+    <ClCompile Include="ParabolaDescription.cpp" />
     <ClCompile Include="PictureSlide.cpp" />
     <ClCompile Include="Polar.cpp" />
+    <ClCompile Include="Reflection.cpp" />
+    <ClCompile Include="Rotation.cpp" />
+    <ClCompile Include="Scaling.cpp" />
+    <ClCompile Include="Shearing.cpp" />
+    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Stadium.cpp" />
     <ClCompile Include="StraightLine.cpp" />
     <ClCompile Include="StraightLine2.cpp" />
+    <ClCompile Include="Translation.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

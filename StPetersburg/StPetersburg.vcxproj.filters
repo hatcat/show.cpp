@@ -11,6 +11,20 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Circle2.cpp" />
     <ClCompile Include="Parabola.cpp" />
+    <ClCompile Include="LineSegment.cpp" />
+    <ClCompile Include="Rotation.cpp" />
+    <ClCompile Include="Reflection.cpp" />
+    <ClCompile Include="Scaling.cpp" />
+    <ClCompile Include="Shearing.cpp" />
+    <ClCompile Include="Translation.cpp" />
+    <ClCompile Include="ParabolaDescription.cpp" />
+    <ClCompile Include="BezierAnimation.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="NonOrthogonalAxes.cpp" />
+    <ClCompile Include="Circle3.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="Stadium.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

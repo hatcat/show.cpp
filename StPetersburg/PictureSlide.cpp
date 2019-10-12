@@ -44,7 +44,7 @@ namespace
 	}
 
 	picture_slide s001{ show::presentation::SLIDE_001, pres::res + "Geometry St Petersburg (1).png" };
-	picture_slide s002{ show::presentation::SLIDE_002, pres::res + "Geometry St Petersburg (2).png" };
+	//picture_slide s002{ show::presentation::SLIDE_002, pres::res + "Geometry St Petersburg (2).png" };
 	picture_slide s003{ show::presentation::SLIDE_003, pres::res + "Geometry St Petersburg (3).png" };
 	picture_slide s004{ show::presentation::SLIDE_004, pres::res + "Geometry St Petersburg (4).png" };
 	picture_slide s005{ show::presentation::SLIDE_005, pres::res + "Geometry St Petersburg (5).png" };
@@ -72,11 +72,11 @@ namespace
 	picture_slide s027{ show::presentation::SLIDE_027, pres::res + "Geometry St Petersburg (27).png" };
 	picture_slide s028{ show::presentation::SLIDE_028, pres::res + "Geometry St Petersburg (28).png" };
 	picture_slide s029{ show::presentation::SLIDE_029, pres::res + "Geometry St Petersburg (29).png" };
-	picture_slide s030{ show::presentation::SLIDE_030, pres::res + "Geometry St Petersburg (30).png" };
-	picture_slide s031{ show::presentation::SLIDE_031, pres::res + "Geometry St Petersburg (31).png" };
-	picture_slide s032{ show::presentation::SLIDE_032, pres::res + "Geometry St Petersburg (32).png" };
-	picture_slide s033{ show::presentation::SLIDE_033, pres::res + "Geometry St Petersburg (33).png" };
-	picture_slide s034{ show::presentation::SLIDE_034, pres::res + "Geometry St Petersburg (34).png" };
+	//picture_slide s030{ show::presentation::SLIDE_030, pres::res + "Geometry St Petersburg (30).png" }; // Translate
+	//picture_slide s031{ show::presentation::SLIDE_031, pres::res + "Geometry St Petersburg (31).png" }; // Scale
+	//picture_slide s032{ show::presentation::SLIDE_032, pres::res + "Geometry St Petersburg (32).png" }; // Shear
+	//picture_slide s033{ show::presentation::SLIDE_033, pres::res + "Geometry St Petersburg (33).png" }; // Reflect
+	//picture_slide s034{ show::presentation::SLIDE_034, pres::res + "Geometry St Petersburg (34).png" }; // Rotate
 	picture_slide s035{ show::presentation::SLIDE_035, pres::res + "Geometry St Petersburg (35).png" };
 	picture_slide s036{ show::presentation::SLIDE_036, pres::res + "Geometry St Petersburg (36).png" };
 	picture_slide s037{ show::presentation::SLIDE_037, pres::res + "Geometry St Petersburg (37).png" };
@@ -84,7 +84,7 @@ namespace
 	picture_slide s039{ show::presentation::SLIDE_039, pres::res + "Geometry St Petersburg (39).png" };
 	picture_slide s040{ show::presentation::SLIDE_040, pres::res + "Geometry St Petersburg (40).png" };
 	picture_slide s041{ show::presentation::SLIDE_041, pres::res + "Geometry St Petersburg (41).png" };
-	picture_slide s042{ show::presentation::SLIDE_042, pres::res + "Geometry St Petersburg (42).png" };
+	//picture_slide s042{ show::presentation::SLIDE_042, pres::res + "Geometry St Petersburg (42).png" }; // LineSegment
 	picture_slide s043{ show::presentation::SLIDE_043, pres::res + "Geometry St Petersburg (43).png" };
 	picture_slide s044{ show::presentation::SLIDE_044, pres::res + "Geometry St Petersburg (44).png" };
 	picture_slide s045{ show::presentation::SLIDE_045, pres::res + "Geometry St Petersburg (45).png" };
@@ -97,7 +97,7 @@ namespace
 	picture_slide s052{ show::presentation::SLIDE_052, pres::res + "Geometry St Petersburg (52).png" };
 	picture_slide s053{ show::presentation::SLIDE_053, pres::res + "Geometry St Petersburg (53).png" };
 	picture_slide s054{ show::presentation::SLIDE_054, pres::res + "Geometry St Petersburg (54).png" };
-	picture_slide s055{ show::presentation::SLIDE_055, pres::res + "Geometry St Petersburg (55).png" };
+	//picture_slide s055{ show::presentation::SLIDE_055, pres::res + "Geometry St Petersburg (55).png" }; // ParabolaDescription
 	picture_slide s056{ show::presentation::SLIDE_056, pres::res + "Geometry St Petersburg (56).png" };
 	picture_slide s057{ show::presentation::SLIDE_057, pres::res + "Geometry St Petersburg (57).png" };
 	picture_slide s058{ show::presentation::SLIDE_058, pres::res + "Geometry St Petersburg (58).png" };
@@ -106,22 +106,22 @@ namespace
 	picture_slide s061{ show::presentation::SLIDE_061, pres::res + "Geometry St Petersburg (61).png" };
 	picture_slide s062{ show::presentation::SLIDE_062, pres::res + "Geometry St Petersburg (62).png" };
 	picture_slide s063{ show::presentation::SLIDE_063, pres::res + "Geometry St Petersburg (63).png" };
-	picture_slide s064{ show::presentation::SLIDE_064, pres::res + "Geometry St Petersburg (64).png" };
+	//picture_slide s064{ show::presentation::SLIDE_064, pres::res + "Geometry St Petersburg (64).png" }; // BezierAnimation
 	picture_slide s065{ show::presentation::SLIDE_065, pres::res + "Geometry St Petersburg (65).png" };
 	picture_slide s066{ show::presentation::SLIDE_066, pres::res + "Geometry St Petersburg (66).png" };
-	picture_slide s067{ show::presentation::SLIDE_067, pres::res + "Geometry St Petersburg (67).png" };
+	//picture_slide s067{ show::presentation::SLIDE_067, pres::res + "Geometry St Petersburg (67).png" }; // Triangle
 	picture_slide s068{ show::presentation::SLIDE_068, pres::res + "Geometry St Petersburg (68).png" };
-	picture_slide s069{ show::presentation::SLIDE_069, pres::res + "Geometry St Petersburg (69).png" };
+	//picture_slide s069{ show::presentation::SLIDE_069, pres::res + "Geometry St Petersburg (69).png" }; // Square
 	picture_slide s070{ show::presentation::SLIDE_070, pres::res + "Geometry St Petersburg (70).png" };
 	picture_slide s071{ show::presentation::SLIDE_071, pres::res + "Geometry St Petersburg (71).png" };
 	picture_slide s072{ show::presentation::SLIDE_072, pres::res + "Geometry St Petersburg (72).png" };
-	picture_slide s073{ show::presentation::SLIDE_073, pres::res + "Geometry St Petersburg (73).png" };
-	picture_slide s074{ show::presentation::SLIDE_074, pres::res + "Geometry St Petersburg (74).png" };
+	//picture_slide s073{ show::presentation::SLIDE_073, pres::res + "Geometry St Petersburg (73).png" }; // NonOrthogonalAxes
+	//picture_slide s074{ show::presentation::SLIDE_074, pres::res + "Geometry St Petersburg (74).png" }; // Circle3
 	picture_slide s075{ show::presentation::SLIDE_075, pres::res + "Geometry St Petersburg (75).png" };
-	picture_slide s076{ show::presentation::SLIDE_076, pres::res + "Geometry St Petersburg (76).png" };
+	//picture_slide s076{ show::presentation::SLIDE_076, pres::res + "Geometry St Petersburg (76).png" }; // Ellipse
 	picture_slide s077{ show::presentation::SLIDE_077, pres::res + "Geometry St Petersburg (77).png" };
-	picture_slide s078{ show::presentation::SLIDE_078, pres::res + "Geometry St Petersburg (78).png" };
-	//picture_slide s079{ show::presentation::SLIDE_079, pres::res + "Geometry St Petersburg (79).png" };	// Asteroids
+	//picture_slide s078{ show::presentation::SLIDE_078, pres::res + "Geometry St Petersburg (78).png" }; // Stadium
+	//picture_slide s079{ show::presentation::SLIDE_079, pres::res + "Geometry St Petersburg (79).png" }; // Asteroids
 	picture_slide s080{ show::presentation::SLIDE_080, pres::res + "Geometry St Petersburg (80).png" };
 	picture_slide s081{ show::presentation::SLIDE_081, pres::res + "Geometry St Petersburg (81).png" };
 	picture_slide s082{ show::presentation::SLIDE_082, pres::res + "Geometry St Petersburg (82).png" };

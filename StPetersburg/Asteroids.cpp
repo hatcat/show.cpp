@@ -1,3 +1,5 @@
+#include "StPetersburg.h"
+
 #include "Slide.h"
 
 #include <random>
@@ -1040,22 +1042,24 @@ namespace
 		bool exit() override;
 	private:
 		game m_game;
+		show::background_image m_bg;
 	};
 
 	rocks_in_space::rocks_in_space(show::presentation p)
 		: show::slide(p)
+		, m_bg(pres::res + "Geometry St Petersburg (79).png")
 	{}
 
 	bool rocks_in_space::enter()
 	{
-//		scale_to_screen.surface_matrix(matrix_2d::create_scale(point_2d{ 3.f, 2.25f }));
-		scale_to_screen.surface_matrix(matrix_2d::create_scale(point_2d{ 2.f, 2.f }));
+		m_bg.prepare();
 		return true;
 	}
 
-	void rocks_in_space::render(unmanaged_output_surface& s)
+	void rocks_in_space::render(unmanaged_output_surface& uos)
 	{
-		m_game.update(s);
+		m_bg.render(uos);
+		m_game.update(uos);
 	}
 
 	bool rocks_in_space::exit()
@@ -1063,5 +1067,5 @@ namespace
 		return true;
 	}
 
-	rocks_in_space s079(show::presentation::SLIDE_079);
+	rocks_in_space s002(show::presentation::SLIDE_002);
 }
