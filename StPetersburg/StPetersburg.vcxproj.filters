@@ -9,6 +9,8 @@
     <ClCompile Include="StraightLine.cpp" />
     <ClCompile Include="StraightLine2.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Circle2.cpp" />
+    <ClCompile Include="Parabola.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

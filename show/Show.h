@@ -15,6 +15,13 @@ namespace show
 		void update(unmanaged_output_surface&);
 	};
 
+	/*
+	Useful functions
+	*/
+
+	template <typename T, typename U>
+	T delta(T begin, T end, U fraction);
+
 	enum presentation
 	{
 		SLIDE_FIRST,
@@ -145,6 +152,12 @@ namespace show
 	};
 }
 
+template <typename T, typename U>
+T show::delta(T begin, T end, U fraction)
+{
+	return begin + ((end - begin) * fraction);
+}
+
 /*
 Slide animations
 
@@ -153,9 +166,9 @@ Slide animations
 03 *13 Polar
 04 *14 StraightLine
 05 *15 StraightLine2
-06 16 Parabola
-07 17 Circle
-08 18 Circle2
+06 *16 Parabola
+07 *17 Circle
+08 *18 Circle2
 09 30 Translate
 10 31 Scale
 11 32 Shear

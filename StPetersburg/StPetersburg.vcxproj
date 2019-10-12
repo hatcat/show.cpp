@@ -154,7 +154,9 @@
     <ClCompile Include="Asteroids.cpp" />
     <ClCompile Include="Axes.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Circle2.cpp" />
     <ClCompile Include="NumberLine.cpp" />
+    <ClCompile Include="Parabola.cpp" />
     <ClCompile Include="PictureSlide.cpp" />
     <ClCompile Include="Polar.cpp" />
     <ClCompile Include="StraightLine.cpp" />

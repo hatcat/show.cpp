@@ -38,11 +38,11 @@ namespace
 
 		auto path = path_builder{};
 		path.clear();
-		if (time_in_slide <= 1530)
+		if (time_in_slide <= 1500)
 		{
-			auto displacement = 765.f - (time_in_slide / 2);
-			path.new_figure(point_2d{ 180.f + displacement, 600.f });
-			path.line(point_2d{ 1710.f - displacement, 600.f });
+			auto displacement = show::delta(0.f, 765.f, time_in_slide / 1500.f);
+			path.new_figure(point_2d{ 945.f - displacement, 600.f });
+			path.line(point_2d{ 945.f + displacement, 600.f });
 		}
 		else
 		{
