@@ -40,7 +40,12 @@ namespace
 
 	constexpr auto asteroid_sweep_lookahead{ 2.0f };
 
+	constexpr auto scale_factor{ 1.5f };
+	constexpr auto move_x{ 480.f };
+	constexpr auto move_y{ 230.f };
+
 	render_props	scale_to_screen;
+	clip_props		clip{ bounding_box{ 0.f, 0.f, playing_field_width, playing_field_height } };
 
 	////////////////////////////////////////////////////////////////////////////////
 	// Input
@@ -272,20 +277,23 @@ namespace
 
 	path_builder stadium::path() const
 	{
+		auto stadium = path_builder{};
+
 		auto c1_c2_extent = extend_segment(m_c1, m_c2, m_radius);
-		auto c1_c2e = extend_segment(m_c1, m_c2, m_radius * 2);
+		auto c1_c2_l = screen_space(rotate(c1_c2_extent, -half_pi<float>, m_c2));
 		auto c2_c1_extent = extend_segment(m_c2, m_c1, m_radius);
-		auto c2_c1e = extend_segment(m_c2, m_c1, m_radius * 2);
-		auto path = path_builder{};
-		path.clear();
-		path.new_figure(screen_space(rotate(c2_c1_extent, -half_pi<float>, m_c1)));
-		path.quadratic_curve(screen_space(rotate(c2_c1e, -half_pi<float>, c2_c1_extent)), screen_space(c2_c1_extent));
-		path.quadratic_curve(screen_space(rotate(c2_c1e, half_pi<float>, c2_c1_extent)), screen_space(rotate(c2_c1_extent, half_pi<float>, m_c1)));
-		path.line(screen_space(rotate(c1_c2_extent, -half_pi<float>, m_c2)));
-		path.quadratic_curve(screen_space(rotate(c1_c2e, -half_pi<float>, c1_c2_extent)), screen_space(c1_c2_extent));
-		path.quadratic_curve(screen_space(rotate(c1_c2e, half_pi<float>, c1_c2_extent)), screen_space(rotate(c1_c2_extent, half_pi<float>, m_c2)));
-		path.close_figure();
-		return path;
+		auto c2_c1_l = screen_space(rotate(c2_c1_extent, -half_pi<float>, m_c1));
+		auto theta = acosf((m_c1.y() - m_c2.y()) / hypotf(m_c1.x() - m_c2.x(), m_c1.y() - m_c2.y()));
+		if (m_c1.x() > m_c2.x())
+		{
+			theta *= -1.f;
+		}
+		stadium.new_figure(c1_c2_l);
+		stadium.arc({ m_radius, m_radius }, pi<float>, theta + pi<float>);
+		stadium.line(c2_c1_l);
+		stadium.arc({ m_radius, m_radius }, pi<float>, theta);
+		stadium.close_figure();
+		return stadium;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -569,10 +577,10 @@ namespace
 			});
 		path.close_figure();
 
-		ds.stroke(brush{ rgba_color::gray }, path, std::nullopt, std::nullopt, std::nullopt, scale_to_screen);
+		ds.stroke(brush{ rgba_color::gray }, path, std::nullopt, std::nullopt, std::nullopt, scale_to_screen, clip);
 		if (draw_sweep)
 		{
-			ds.stroke(brush{ rgba_color::cornflower_blue }, sweep(asteroid_sweep_lookahead).path(), std::nullopt, std::nullopt, std::nullopt, scale_to_screen /*, clip props*/);
+			ds.stroke(brush{ rgba_color::cornflower_blue }, sweep(asteroid_sweep_lookahead).path(), std::nullopt, std::nullopt, std::nullopt, scale_to_screen, clip);
 		}
 	}
 
@@ -902,7 +910,7 @@ namespace
 			last_update = now;
 		}
 
-		ds.paint(brush{ rgba_color::black });
+		ds.paint(brush{ rgba_color::black }, std::nullopt, scale_to_screen, clip);
 		draw_asteroids(ds);
 		draw_ship(ds);
 		draw_missiles(ds);
@@ -1052,6 +1060,7 @@ namespace
 
 	bool rocks_in_space::enter()
 	{
+		scale_to_screen.surface_matrix(matrix_2d::create_scale({ scale_factor, scale_factor }) * matrix_2d::create_translate({ move_x, move_y }));
 		m_bg.prepare();
 		return true;
 	}
