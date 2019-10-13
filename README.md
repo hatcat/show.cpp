@@ -12,6 +12,5 @@ This is the first draft of the library. It is exceedingly rough around the edges
 To Do:
 
  - Enable selecting the resource directory as a command line option.
- - Add a re-enter key to restart an animation.
 
 Thanks to the io2d team for keeping things going, and to Hana Dusikova for prompting me to create a piece of open source C++ presentation software.

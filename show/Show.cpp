@@ -15,8 +15,10 @@ namespace
 
 	auto next_key = 'X';
 	auto prev_key = 'Z';
+	auto repeat_key = 'M';
 	auto next_down = false;
 	auto prev_down = false;
+	auto repeat_down = false;
 
 	bool bounce_check(const bool& key, bool& down)
 	{
@@ -33,6 +35,7 @@ namespace
 	{
 		bool next = false;
 		bool prev = false;
+		bool repeat = false;
 	};
 
 	keypress& press()
@@ -51,9 +54,14 @@ namespace
 		return bounce_check(press().prev, prev_down);
 	}
 
+	bool repeat()
+	{
+		return bounce_check(press().repeat, repeat_down);
+	}
+
 	void get_key_state()
 	{
-		press() = { GetKeyState(next_key) < 0, GetKeyState(prev_key) < 0 };
+		press() = { GetKeyState(next_key) < 0, GetKeyState(prev_key) < 0, GetKeyState(repeat_key) < 0 };
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -106,6 +114,10 @@ namespace
 				show::slide_show()[show::presentation(m_current_slide + 1)]->exit();
 				show::slide_show()[show::presentation(m_current_slide)]->enter();
 			}
+		}
+		else if (repeat())
+		{
+			show::slide_show()[show::presentation(m_current_slide)]->enter();
 		}
 	}
 }
