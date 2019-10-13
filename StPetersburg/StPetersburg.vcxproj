@@ -158,6 +158,7 @@
     <ClCompile Include="Circle2.cpp" />
     <ClCompile Include="Circle3.cpp" />
     <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="FloatDistribution.cpp" />
     <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="NonOrthogonalAxes.cpp" />
     <ClCompile Include="NumberLine.cpp" />

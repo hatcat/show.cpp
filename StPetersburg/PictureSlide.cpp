@@ -135,7 +135,7 @@ namespace
 	picture_slide s090{ show::presentation::SLIDE_090, pres::res + "Geometry St Petersburg (90).png" };
 	picture_slide s091{ show::presentation::SLIDE_091, pres::res + "Geometry St Petersburg (91).png" };
 	picture_slide s092{ show::presentation::SLIDE_092, pres::res + "Geometry St Petersburg (92).png" };
-	picture_slide s093{ show::presentation::SLIDE_093, pres::res + "Geometry St Petersburg (93).png" };
+	//picture_slide s093{ show::presentation::SLIDE_093, pres::res + "Geometry St Petersburg (93).png" }; // FloatDistribution
 	picture_slide s094{ show::presentation::SLIDE_094, pres::res + "Geometry St Petersburg (94).png" };
 	picture_slide s095{ show::presentation::SLIDE_095, pres::res + "Geometry St Petersburg (95).png" };
 	picture_slide s096{ show::presentation::SLIDE_096, pres::res + "Geometry St Petersburg (96).png" };
