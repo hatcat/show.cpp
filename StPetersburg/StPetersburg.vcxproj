@@ -157,6 +157,7 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Circle2.cpp" />
     <ClCompile Include="Circle3.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="FloatDistribution.cpp" />
     <ClCompile Include="LineSegment.cpp" />

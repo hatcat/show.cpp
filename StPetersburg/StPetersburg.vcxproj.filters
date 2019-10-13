@@ -27,6 +27,7 @@
     <ClCompile Include="Stadium.cpp" />
     <ClCompile Include="WildCurve.cpp" />
     <ClCompile Include="FloatDistribution.cpp" />
+    <ClCompile Include="Credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

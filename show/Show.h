@@ -147,6 +147,7 @@ namespace show
 		SLIDE_120,
 		SLIDE_121,
 		SLIDE_122,
+		SLIDE_123,
 
 		SLIDE_LAST
 	};
@@ -185,5 +186,6 @@ Slide animations
 22 *78 Stadium
 23 *79 Asteroids
 25 *81 WildCurve
-26 93 FloatDistribution
+26 *93 FloatDistribution
+27 *123 Credits
 */

@@ -188,8 +188,8 @@ int show::Win32Win::Run()
 	long lwidth = rc.right - rc.left;
 	long lheight = rc.bottom - rc.top;
 
-	long lleft = 200;
-	long ltop = 200;
+	long lleft = 0;
+	long ltop = 0;
 
 	const wchar_t* winTitle = L"Show.cpp";
 

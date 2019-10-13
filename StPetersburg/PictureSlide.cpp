@@ -165,4 +165,5 @@ namespace
 	picture_slide s120{ show::presentation::SLIDE_120, pres::res + "Geometry St Petersburg (120).png" };
 	picture_slide s121{ show::presentation::SLIDE_121, pres::res + "Geometry St Petersburg (121).png" };
 	picture_slide s122{ show::presentation::SLIDE_122, pres::res + "Geometry St Petersburg (122).png" };
+	//picture_slide s123{ show::presentation::SLIDE_122, pres::res + "Geometry St Petersburg (123).png" }; // Credits
 }
