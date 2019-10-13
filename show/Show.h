@@ -184,6 +184,6 @@ Slide animations
 21 *76 Ellipse
 22 *78 Stadium
 23 *79 Asteroids
-25 81 WildCurve
+25 *81 WildCurve
 26 93 FloatDistribution
 */

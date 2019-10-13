@@ -175,6 +175,7 @@
     <ClCompile Include="StraightLine2.cpp" />
     <ClCompile Include="Translation.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="WildCurve.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

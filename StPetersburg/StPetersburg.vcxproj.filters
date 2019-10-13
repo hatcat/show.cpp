@@ -25,6 +25,7 @@
     <ClCompile Include="Circle3.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Stadium.cpp" />
+    <ClCompile Include="WildCurve.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StPetersburg.h" />

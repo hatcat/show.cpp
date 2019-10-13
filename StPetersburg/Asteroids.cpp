@@ -1076,5 +1076,5 @@ namespace
 		return true;
 	}
 
-	rocks_in_space s002(show::presentation::SLIDE_002);
+	rocks_in_space s079(show::presentation::SLIDE_079);
 }

@@ -44,7 +44,7 @@ namespace
 	}
 
 	picture_slide s001{ show::presentation::SLIDE_001, pres::res + "Geometry St Petersburg (1).png" };
-	//picture_slide s002{ show::presentation::SLIDE_002, pres::res + "Geometry St Petersburg (2).png" };
+	picture_slide s002{ show::presentation::SLIDE_002, pres::res + "Geometry St Petersburg (2).png" };
 	picture_slide s003{ show::presentation::SLIDE_003, pres::res + "Geometry St Petersburg (3).png" };
 	picture_slide s004{ show::presentation::SLIDE_004, pres::res + "Geometry St Petersburg (4).png" };
 	picture_slide s005{ show::presentation::SLIDE_005, pres::res + "Geometry St Petersburg (5).png" };
@@ -123,7 +123,7 @@ namespace
 	//picture_slide s078{ show::presentation::SLIDE_078, pres::res + "Geometry St Petersburg (78).png" }; // Stadium
 	//picture_slide s079{ show::presentation::SLIDE_079, pres::res + "Geometry St Petersburg (79).png" }; // Asteroids
 	picture_slide s080{ show::presentation::SLIDE_080, pres::res + "Geometry St Petersburg (80).png" };
-	picture_slide s081{ show::presentation::SLIDE_081, pres::res + "Geometry St Petersburg (81).png" };
+	//picture_slide s081{ show::presentation::SLIDE_081, pres::res + "Geometry St Petersburg (81).png" }; // WildCurve
 	picture_slide s082{ show::presentation::SLIDE_082, pres::res + "Geometry St Petersburg (82).png" };
 	picture_slide s083{ show::presentation::SLIDE_083, pres::res + "Geometry St Petersburg (83).png" };
 	picture_slide s084{ show::presentation::SLIDE_084, pres::res + "Geometry St Petersburg (84).png" };
