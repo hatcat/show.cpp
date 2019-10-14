@@ -32,8 +32,6 @@ namespace
 
 	void circle2::render(unmanaged_output_surface& uos)
 	{
-		auto time_in_slide = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - m_entry_point).count();
-
 		m_bg.render(uos);
 
 		auto x_axis = path_builder{};
