@@ -15,7 +15,7 @@ namespace show
 	public:
 		slide(presentation name);
 		virtual ~slide();
-		virtual bool enter() = 0;
+		virtual bool enter(show const&) = 0;
 		virtual void render(unmanaged_output_surface&) = 0;
 		virtual bool exit() = 0;
 	};
@@ -25,12 +25,10 @@ namespace show
 	class background_image
 	{
 	public:
-		background_image(std::string const&);
-		background_image(std::string&&);
-		void prepare();
+		background_image();
+		void prepare(std::string&&);
 		void render(unmanaged_output_surface&);
 	private:
-		std::string		m_filename;
 		brush			m_image_brush;
 		render_props	m_rp;
 	};

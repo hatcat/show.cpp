@@ -10,7 +10,7 @@ namespace
 	{
 	public:
 		float_distribution(show::presentation name);
-		bool enter() override;
+		bool enter(show::show const&) override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
 	private:
@@ -21,13 +21,12 @@ namespace
 
 	float_distribution::float_distribution(show::presentation p)
 		: show::slide(p)
-		, m_bg(pres::res + "Geometry St Petersburg (93).png")
 	{}
 
-	bool float_distribution::enter()
+	bool float_distribution::enter(show::show const& s)
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_bg.prepare();
+		m_bg.prepare(s.res_root() + "Geometry St Petersburg (93).png");
 		return true;
 	}
 

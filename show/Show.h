@@ -2,6 +2,8 @@
 
 #include <io2d.h>
 
+#include <string>
+
 namespace show
 {
 	using namespace std::experimental::io2d;
@@ -12,7 +14,12 @@ namespace show
 	class show
 	{
 	public:
+		show(std::string const& cmd_line);
 		void update(unmanaged_output_surface&);
+
+		std::string const& res_root() const;
+	private:
+		std::string const m_res_root;
 	};
 
 	/*

@@ -12,7 +12,7 @@ namespace show
 	class Win32Win
 	{
 	public:
-		Win32Win(HINSTANCE hinst, int w = 1920, int h = 1080, format fmt = format::argb32, scaling scl = scaling::letterbox);
+		Win32Win(HINSTANCE hinst, LPSTR cmd_line, int w = 1920, int h = 1080, format fmt = format::argb32, scaling scl = scaling::letterbox);
 
 		LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		int Run();

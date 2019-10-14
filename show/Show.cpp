@@ -1,7 +1,9 @@
+#include "show.h"
 #include "slide.h"
 #include "Window.h"
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 using namespace std::chrono;
@@ -9,6 +11,22 @@ using namespace std::experimental::io2d;
 
 namespace
 {
+	std::string res_root_from_cmd_line(std::string const& cmd_line)
+	{
+		auto start = cmd_line.find("-res_root=\"");
+		if (start == std::string::npos)
+		{
+			return "";
+		}
+		start += 11;
+		auto end = cmd_line.find("\"", start);
+		if (end == std::string::npos)
+		{
+			return "";
+		}
+		return cmd_line.substr(start, end - start);
+	}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Input
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,7 +91,7 @@ namespace
 	public:
 		navigate(show::presentation);
 		int current_slide() const;
-		void check();
+		void check(show::show const&);
 	private:
 		int m_current_slide;
 	};
@@ -89,7 +107,7 @@ namespace
 		return m_current_slide;
 	}
 
-	void navigate::check()
+	void navigate::check(show::show const& s)
 	{
 		if (next())
 		{
@@ -100,7 +118,7 @@ namespace
 			else
 			{
 				show::slide_show()[show::presentation(m_current_slide - 1)]->exit();
-				show::slide_show()[show::presentation(m_current_slide)]->enter();
+				show::slide_show()[show::presentation(m_current_slide)]->enter(s);
 			}
 		}
 		else if (prev())
@@ -112,27 +130,36 @@ namespace
 			else
 			{
 				show::slide_show()[show::presentation(m_current_slide + 1)]->exit();
-				show::slide_show()[show::presentation(m_current_slide)]->enter();
+				show::slide_show()[show::presentation(m_current_slide)]->enter(s);
 			}
 		}
 		else if (repeat())
 		{
-			show::slide_show()[show::presentation(m_current_slide)]->enter();
+			show::slide_show()[show::presentation(m_current_slide)]->enter(s);
 		}
 	}
 }
 
+show::show::show(std::string const& cmd_line)
+	: m_res_root(res_root_from_cmd_line(cmd_line))
+{}
+
 void show::show::update(unmanaged_output_surface& s)
 {
-	static auto first_entry = slide_show()[presentation(nav.current_slide())]->enter();
+	static auto first_entry = slide_show()[presentation(nav.current_slide())]->enter(*this);
 
 	get_key_state();
-	nav.check();
+	nav.check(*this);
 	slide_show()[presentation(nav.current_slide())]->render(s);
 }
 
-int CALLBACK WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int)
+std::string const& show::show::res_root() const
 {
-	show::Win32Win s(hInst);
+	return m_res_root;
+}
+
+int CALLBACK WinMain(HINSTANCE hInst, HINSTANCE, LPSTR cmd_line, int)
+{
+	show::Win32Win s(hInst, cmd_line);
 	return s.Run();
 }

@@ -10,7 +10,7 @@ namespace
 	{
 	public:
 		parabola_description(show::presentation);
-		bool enter() override;
+		bool enter(show::show const&) override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
 	private:
@@ -20,13 +20,12 @@ namespace
 
 	parabola_description::parabola_description(show::presentation p)
 		: show::slide(p)
-		, m_bg(pres::res + "Geometry St Petersburg (55).png")
 	{}
 
-	bool parabola_description::enter()
+	bool parabola_description::enter(show::show const& s)
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_bg.prepare();
+		m_bg.prepare(s.res_root() + "Geometry St Petersburg (55).png");
 		return true;
 	}
 

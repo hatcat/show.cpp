@@ -163,7 +163,7 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 
 }
 
-show::Win32Win::Win32Win(HINSTANCE hinst, int w, int h, format fmt, scaling scl)
+show::Win32Win::Win32Win(HINSTANCE hinst, LPSTR cmd_line, int w, int h, format fmt, scaling scl)
 	: m_hInstance(hinst)
 	, m_hwnd(nullptr)
 	, m_hdc(nullptr)
@@ -171,7 +171,7 @@ show::Win32Win::Win32Win(HINSTANCE hinst, int w, int h, format fmt, scaling scl)
 	, m_h(h)
 	, m_fmt(fmt)
 	, m_scl(scl)
-	, m_show()
+	, m_show(cmd_line)
 	, m_outputSfc(default_graphics_surfaces::surfaces::create_unmanaged_output_surface())
 {
 	RegisterWindowClass();

@@ -13,19 +13,13 @@ std::vector<show::slide*>& show::slide_show()
 	return slides;
 }
 
-show::background_image::background_image(std::string const& filename)
-	: m_image_brush{ rgba_color::black }
-	, m_filename(filename)
+show::background_image::background_image()
+	: m_image_brush{rgba_color::black}
 {}
 
-show::background_image::background_image(std::string&& filename)
-	: m_image_brush{ rgba_color::black }
-	, m_filename(std::move(filename))
-{}
-
-void show::background_image::prepare()
+void show::background_image::prepare(std::string&& s)
 {
-	m_image_brush = image_surface{ m_filename,
+	m_image_brush = image_surface{ std::move(s),
 									std::experimental::io2d::image_file_format::png,
 									std::experimental::io2d::format::argb32 };
 	auto image_size = display_point{ 960, 540 };

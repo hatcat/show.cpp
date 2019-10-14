@@ -1045,7 +1045,7 @@ namespace
 	{
 	public:
 		rocks_in_space(show::presentation);
-		bool enter() override;
+		bool enter(show::show const&) override;
 		void render(unmanaged_output_surface&) override;
 		bool exit() override;
 	private:
@@ -1055,13 +1055,12 @@ namespace
 
 	rocks_in_space::rocks_in_space(show::presentation p)
 		: show::slide(p)
-		, m_bg(pres::res + "Geometry St Petersburg (79).png")
 	{}
 
-	bool rocks_in_space::enter()
+	bool rocks_in_space::enter(show::show const& s)
 	{
 		scale_to_screen.surface_matrix(matrix_2d::create_scale({ scale_factor, scale_factor }) * matrix_2d::create_translate({ move_x, move_y }));
-		m_bg.prepare();
+		m_bg.prepare(s.res_root() + "Geometry St Petersburg (79).png");
 		return true;
 	}
 
