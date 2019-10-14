@@ -11,6 +11,6 @@ This is the first draft of the library. It is exceedingly rough around the edges
 
 To Do:
 
- - Enable selecting the resource directory as a command line option.
+ - Make the St Petersburg presentation resolution independent
 
 Thanks to the io2d team for keeping things going, and to Hana Dusikova for prompting me to create a piece of open source C++ presentation software.
