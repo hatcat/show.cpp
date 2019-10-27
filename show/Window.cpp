@@ -5,6 +5,10 @@
 
 namespace
 {
+	static std::once_flag winClassRegistered;
+	const wchar_t* winClassName = L"Show.cpp_WinClass";
+
+	[[nodiscard]]
 	int int_from_cmd_line(std::string const& cmd_line, std::string const& token)
 	{
 		auto start = cmd_line.find(token);
@@ -15,21 +19,25 @@ namespace
 		return atoi(cmd_line.c_str() + start + token.size());
 	}
 
+	[[nodiscard]]
 	int x_from_cmd_line(std::string const& cmd_line)
 	{
 		return int_from_cmd_line(cmd_line, "-x=");
 	}
 
+	[[nodiscard]]
 	int y_from_cmd_line(std::string const& cmd_line)
 	{
 		return int_from_cmd_line(cmd_line, "-y=");
 	}
 
+	[[nodiscard]]
 	int w_from_cmd_line(std::string const& cmd_line)
 	{
 		return int_from_cmd_line(cmd_line, "-w=");
 	}
 
+	[[nodiscard]]
 	int h_from_cmd_line(std::string const& cmd_line)
 	{
 		return int_from_cmd_line(cmd_line, "-h=");
@@ -46,38 +54,32 @@ namespace
 		}
 	}
 
-	static std::once_flag winClassRegistered;
-	const wchar_t* winClassName = L"Show.cpp_WinClass";
-}
+	void RegisterWindowClass() {
+		::std::call_once(winClassRegistered, []() {
+			WNDCLASSEX wcex{};
 
-LRESULT CALLBACK DefaultWindowProc(HWND, UINT, WPARAM, LPARAM);
-void RegisterWindowClass();
+			wcex.cbSize = sizeof(WNDCLASSEX);
+			// We want to keep a DC so we don't have to constantly recreate the native cairo device.
+			// We want CS_HREDRAW and CS_VREDRAW so we get a refresh of the whole window if the client area changes due to movement or size adjustment.
+			wcex.style = CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
+			wcex.lpfnWndProc = show::DefaultWindowProc;
+			wcex.cbClsExtra = 0;
+			wcex.cbWndExtra = sizeof(LONG_PTR);
+			wcex.hInstance = static_cast<HINSTANCE>(GetModuleHandleW(nullptr));
+			wcex.hIcon = static_cast<HICON>(nullptr);
+			wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
+			wcex.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
+			wcex.lpszMenuName = static_cast<LPCWSTR>(nullptr);
+			wcex.lpszClassName = winClassName;
+			wcex.hIconSm = static_cast<HICON>(nullptr);
 
-void RegisterWindowClass() {
-	::std::call_once(winClassRegistered, []() {
-		WNDCLASSEX wcex{};
-
-		wcex.cbSize = sizeof(WNDCLASSEX);
-		// We want to keep a DC so we don't have to constantly recreate the native cairo device.
-		// We want CS_HREDRAW and CS_VREDRAW so we get a refresh of the whole window if the client area changes due to movement or size adjustment.
-		wcex.style = CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
-		wcex.lpfnWndProc = show::DefaultWindowProc;
-		wcex.cbClsExtra = 0;
-		wcex.cbWndExtra = sizeof(LONG_PTR);
-		wcex.hInstance = static_cast<HINSTANCE>(GetModuleHandleW(nullptr));
-		wcex.hIcon = static_cast<HICON>(nullptr);
-		wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
-		wcex.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
-		wcex.lpszMenuName = static_cast<LPCWSTR>(nullptr);
-		wcex.lpszClassName = winClassName;
-		wcex.hIconSm = static_cast<HICON>(nullptr);
-
-		return RegisterClassEx(&wcex);
-		});
+			return RegisterClassEx(&wcex);
+			});
+	}
 }
 
 LRESULT CALLBACK show::DefaultWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	LONG_PTR objPtr = GetWindowLongPtrW(hwnd, 0);
+	LONG_PTR objPtr = GetWindowLongPtr(hwnd, 0);
 	if (msg == WM_CREATE) {
 		CREATESTRUCT* create = reinterpret_cast<CREATESTRUCT*>(lParam);
 		// Return 0 to allow the window to proceed in the creation process.
@@ -94,26 +96,20 @@ LRESULT CALLBACK show::DefaultWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPA
 	}
 }
 
-void show::Win32Win::OnWmCreate(HWND hwnd)
+show::Win32Win::Win32Win(HINSTANCE hinst, LPSTR cmd_line, format fmt, scaling scl)
+	: m_hInstance(hinst)
+	, m_hwnd(nullptr)
+	, m_hdc(nullptr)
+	, m_x(x_from_cmd_line(cmd_line))
+	, m_y(y_from_cmd_line(cmd_line))
+	, m_w(w_from_cmd_line(cmd_line))
+	, m_h(h_from_cmd_line(cmd_line))
+	, m_fmt(fmt)
+	, m_scl(scl)
+	, m_show(cmd_line)
+	, m_outputSfc(default_graphics_surfaces::surfaces::create_unmanaged_output_surface())
 {
-	SetLastError(ERROR_SUCCESS);
-	if (SetWindowLongPtrW(hwnd, 0, reinterpret_cast<LONG_PTR>(this)) == 0) {
-		// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
-		DWORD lastError = GetLastError();
-		if (lastError != ERROR_SUCCESS) {
-			throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtrW(HWND, int, LONG_PTR) in cairo_display_surface::cairo_display_surface(int, int, format, int, int, scaling)");
-		}
-	}
-	m_hwnd = hwnd;
-	m_hdc = GetDC(m_hwnd);
-	default_graphics_surfaces::surfaces::unmanaged_surface_context_type unmanaged_context;
-	unmanaged_context.hInstance = m_hInstance;
-	unmanaged_context.hwnd = m_hwnd;
-	unmanaged_context.hdc = m_hdc;
-	m_outputSfc = std::experimental::io2d::unmanaged_output_surface(default_graphics_surfaces::surfaces::create_unmanaged_output_surface(unmanaged_context, m_w, m_h, m_fmt, m_scl));
-	m_outputSfc.display_dimensions(display_point{ m_w, m_h });
-	m_outputSfc.draw_callback([&](std::experimental::io2d::unmanaged_output_surface& uos) { m_show.update(uos); });
-	m_canDraw = true;
+	RegisterWindowClass();
 }
 
 LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -161,6 +157,15 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 		m_outputSfc.display_dimensions(display_point(LOWORD(lParam), HIWORD(lParam)));
 	} break;
 
+	case WM_CHAR:
+	{
+		if (wParam == '5')
+		{
+			m_border = !m_border;
+			UpdateBorder();
+		}
+	} break;
+
 	case WM_PAINT:
 	{
 		if (m_canDraw) {
@@ -194,36 +199,8 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 
 }
 
-show::Win32Win::Win32Win(HINSTANCE hinst, LPSTR cmd_line, format fmt, scaling scl)
-	: m_hInstance(hinst)
-	, m_hwnd(nullptr)
-	, m_hdc(nullptr)
-	, m_x(x_from_cmd_line(cmd_line))
-	, m_y(y_from_cmd_line(cmd_line))
-	, m_w(w_from_cmd_line(cmd_line))
-	, m_h(h_from_cmd_line(cmd_line))
-	, m_fmt(fmt)
-	, m_scl(scl)
-	, m_show(cmd_line)
-	, m_outputSfc(default_graphics_surfaces::surfaces::create_unmanaged_output_surface())
-{
-	RegisterWindowClass();
-}
-
 int show::Win32Win::Run()
 {
-	RECT rc;
-	rc.top = m_x;
-	rc.left = m_y;
-	rc.right = m_x + m_w;
-	rc.bottom = m_y + m_h;
-
-	long lwidth = rc.right - rc.left;
-	long lheight = rc.bottom - rc.top;
-
-	long lleft = 0;
-	long ltop = 0;
-
 	const wchar_t* winTitle = L"Show.cpp";
 
 	// Create an instance of the window
@@ -232,9 +209,8 @@ int show::Win32Win::Run()
 		winClassName,						// class name
 		winTitle,							// instance title
 		0,									// window style
-		lleft, ltop,						// initial x, y
-		lwidth,								// initial width
-		lheight,							// initial height
+		m_x, m_y,							// initial x, y
+		m_w, m_h,							// initial width, height
 		static_cast<HWND>(nullptr),			// handle to parent
 		static_cast<HMENU>(nullptr),		// handle to menu
 		static_cast<HINSTANCE>(nullptr),	// instance of this application
@@ -245,20 +221,11 @@ int show::Win32Win::Run()
 	}
 
 	SetLastError(ERROR_SUCCESS);
-	if (SetWindowLong(m_hwnd, GWL_STYLE, 0) == 0) {
+	if (SetWindowLongPtr(m_hwnd, GWL_STYLE, 0) == 0) {
 		// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
 		DWORD lastError = GetLastError();
 		if (lastError != ERROR_SUCCESS) {
-			throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLong(HWND, int, LONG_PTR)");
-		}
-	}
-
-	SetLastError(ERROR_SUCCESS);
-	if (SetWindowLongPtrW(m_hwnd, 0, reinterpret_cast<LONG_PTR>(this)) == 0) {
-		// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
-		DWORD lastError = GetLastError();
-		if (lastError != ERROR_SUCCESS) {
-			throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtrW(HWND, int, LONG_PTR) in cairo_display_surface::cairo_display_surface(int, int, format, int, int, scaling)");
+			throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtr(HWND, int, LONG_PTR)");
 		}
 	}
 
@@ -313,4 +280,52 @@ int show::Win32Win::Run()
 		}
 	}
 	return static_cast<int>(msg.wParam);
+}
+
+void show::Win32Win::OnWmCreate(HWND hwnd)
+{
+	SetLastError(ERROR_SUCCESS);
+	if (SetWindowLongPtr(hwnd, 0, reinterpret_cast<LONG_PTR>(this)) == 0) {
+		// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
+		DWORD lastError = GetLastError();
+		if (lastError != ERROR_SUCCESS) {
+			throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtr(HWND, int, LONG_PTR) in cairo_display_surface::cairo_display_surface(int, int, format, int, int, scaling)");
+		}
+	}
+	m_hwnd = hwnd;
+	m_hdc = GetDC(m_hwnd);
+	default_graphics_surfaces::surfaces::unmanaged_surface_context_type unmanaged_context;
+	unmanaged_context.hInstance = m_hInstance;
+	unmanaged_context.hwnd = m_hwnd;
+	unmanaged_context.hdc = m_hdc;
+	m_outputSfc = std::experimental::io2d::unmanaged_output_surface(default_graphics_surfaces::surfaces::create_unmanaged_output_surface(unmanaged_context, m_w, m_h, m_fmt, m_scl));
+	m_outputSfc.display_dimensions(display_point{ m_w, m_h });
+	m_outputSfc.draw_callback([&](std::experimental::io2d::unmanaged_output_surface& uos) { m_show.update(uos); });
+	m_canDraw = true;
+}
+
+void show::Win32Win::UpdateBorder()
+{
+/*	if (m_border)
+	{
+		SetLastError(ERROR_SUCCESS);
+		if (SetWindowLongPtr(m_hwnd, GWL_STYLE, WS_OVERLAPPED) == 0) {
+			// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
+			DWORD lastError = GetLastError();
+			if (lastError != ERROR_SUCCESS) {
+				throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtr(HWND, int, LONG_PTR)");
+			}
+		}
+	}
+	else
+	{
+		SetLastError(ERROR_SUCCESS);
+		if (SetWindowLongPtr(m_hwnd, GWL_STYLE, 0) == 0) {
+			// SetWindowLongPtr is weird in terms of how it fails. See its documentation. Hence this weird check.
+			DWORD lastError = GetLastError();
+			if (lastError != ERROR_SUCCESS) {
+				throw_system_error_for_GetLastError(lastError, "Failed call to SetWindowLongPtr(HWND, int, LONG_PTR)");
+			}
+		}
+	}*/
 }

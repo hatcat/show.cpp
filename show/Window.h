@@ -21,10 +21,12 @@ namespace show
 		friend LRESULT CALLBACK DefaultWindowProc(HWND, UINT, WPARAM, LPARAM);
 
 		void		OnWmCreate(HWND hwnd);
+		void		UpdateBorder();
 
 		HINSTANCE	m_hInstance = nullptr;
 		HWND		m_hwnd = nullptr;
 		HDC			m_hdc = nullptr;
+		bool		m_border = false;
 
 		bool		m_canDraw = false;
 		int			m_x;
