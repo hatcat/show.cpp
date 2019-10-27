@@ -12,7 +12,7 @@ namespace show
 	class Win32Win
 	{
 	public:
-		Win32Win(HINSTANCE hinst, LPSTR cmd_line, int w = 1920, int h = 1080, format fmt = format::argb32, scaling scl = scaling::letterbox);
+		Win32Win(HINSTANCE hinst, LPSTR cmd_line, format fmt = format::argb32, scaling scl = scaling::letterbox);
 
 		LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		int Run();
@@ -27,10 +27,10 @@ namespace show
 		HDC			m_hdc = nullptr;
 
 		bool		m_canDraw = false;
-		int			m_x = 0;
-		int			m_y = 0;
-		int			m_w = 1920;
-		int			m_h = 1080;
+		int			m_x;
+		int			m_y;
+		int			m_w;
+		int			m_h;
 		format		m_fmt;
 		scaling		m_scl;
 

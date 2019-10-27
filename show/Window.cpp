@@ -1,9 +1,40 @@
 #include "Window.h"
 #include <mutex>
 #include <system_error>
+#include <charconv>
 
 namespace
 {
+	int int_from_cmd_line(std::string const& cmd_line, std::string const& token)
+	{
+		auto start = cmd_line.find(token);
+		if (start == std::string::npos)
+		{
+			return 0;
+		}
+		return atoi(cmd_line.c_str() + start + token.size());
+	}
+
+	int x_from_cmd_line(std::string const& cmd_line)
+	{
+		return int_from_cmd_line(cmd_line, "-x=");
+	}
+
+	int y_from_cmd_line(std::string const& cmd_line)
+	{
+		return int_from_cmd_line(cmd_line, "-y=");
+	}
+
+	int w_from_cmd_line(std::string const& cmd_line)
+	{
+		return int_from_cmd_line(cmd_line, "-w=");
+	}
+
+	int h_from_cmd_line(std::string const& cmd_line)
+	{
+		return int_from_cmd_line(cmd_line, "-h=");
+	}
+
 	[[noreturn]]
 	void throw_system_error_for_GetLastError(DWORD getLastErrorValue, const char* message) {
 		if (message != nullptr) {
@@ -163,12 +194,14 @@ LRESULT CALLBACK show::Win32Win::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, 
 
 }
 
-show::Win32Win::Win32Win(HINSTANCE hinst, LPSTR cmd_line, int w, int h, format fmt, scaling scl)
+show::Win32Win::Win32Win(HINSTANCE hinst, LPSTR cmd_line, format fmt, scaling scl)
 	: m_hInstance(hinst)
 	, m_hwnd(nullptr)
 	, m_hdc(nullptr)
-	, m_w(w)
-	, m_h(h)
+	, m_x(x_from_cmd_line(cmd_line))
+	, m_y(y_from_cmd_line(cmd_line))
+	, m_w(w_from_cmd_line(cmd_line))
+	, m_h(h_from_cmd_line(cmd_line))
 	, m_fmt(fmt)
 	, m_scl(scl)
 	, m_show(cmd_line)
@@ -198,7 +231,7 @@ int show::Win32Win::Run()
 		static_cast<DWORD>(0),				// extended style
 		winClassName,						// class name
 		winTitle,							// instance title
-		(WS_BORDER | WS_VISIBLE),			// window style
+		0,									// window style
 		lleft, ltop,						// initial x, y
 		lwidth,								// initial width
 		lheight,							// initial height
