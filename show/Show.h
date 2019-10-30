@@ -33,6 +33,7 @@ namespace show
 	{
 		SLIDE_FIRST,
 		SLIDE_001 = SLIDE_FIRST,
+		SLIDE_INCLUDE,
 		SLIDE_002,
 		SLIDE_003,
 		SLIDE_004,

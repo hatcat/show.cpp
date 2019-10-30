@@ -45,6 +45,7 @@ namespace
 	}
 
 	picture_slide s001{ show::presentation::SLIDE_001, "Geometry St Petersburg (1).png" };
+	picture_slide sinclude{ show::presentation::SLIDE_INCLUDE, "Geometry St Petersburg (include).png" };
 	picture_slide s002{ show::presentation::SLIDE_002, "Geometry St Petersburg (2).png" };
 	picture_slide s003{ show::presentation::SLIDE_003, "Geometry St Petersburg (3).png" };
 	picture_slide s004{ show::presentation::SLIDE_004, "Geometry St Petersburg (4).png" };
