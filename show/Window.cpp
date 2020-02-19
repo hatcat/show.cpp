@@ -9,12 +9,12 @@ namespace
 	const wchar_t* winClassName = L"Show.cpp_WinClass";
 
 	[[nodiscard]]
-	int int_from_cmd_line(std::string const& cmd_line, std::string const& token)
+	int int_from_cmd_line(std::string const& cmd_line, std::string const& token, int default_value)
 	{
 		auto start = cmd_line.find(token);
 		if (start == std::string::npos)
 		{
-			return 0;
+			return default_value;
 		}
 		return atoi(cmd_line.c_str() + start + token.size());
 	}
@@ -22,25 +22,25 @@ namespace
 	[[nodiscard]]
 	int x_from_cmd_line(std::string const& cmd_line)
 	{
-		return int_from_cmd_line(cmd_line, "-x=");
+		return int_from_cmd_line(cmd_line, "-x=", 0);
 	}
 
 	[[nodiscard]]
 	int y_from_cmd_line(std::string const& cmd_line)
 	{
-		return int_from_cmd_line(cmd_line, "-y=");
+		return int_from_cmd_line(cmd_line, "-y=", 0);
 	}
 
 	[[nodiscard]]
 	int w_from_cmd_line(std::string const& cmd_line)
 	{
-		return int_from_cmd_line(cmd_line, "-w=");
+		return int_from_cmd_line(cmd_line, "-w=", 1920);
 	}
 
 	[[nodiscard]]
 	int h_from_cmd_line(std::string const& cmd_line)
 	{
-		return int_from_cmd_line(cmd_line, "-h=");
+		return int_from_cmd_line(cmd_line, "-h=", 1080);
 	}
 
 	[[noreturn]]

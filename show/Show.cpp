@@ -16,7 +16,7 @@ namespace
 		auto start = cmd_line.find("-res_root=\"");
 		if (start == std::string::npos)
 		{
-			return "";
+			return "..\\res\\";
 		}
 		start += 11;
 		auto end = cmd_line.find("\"", start);
