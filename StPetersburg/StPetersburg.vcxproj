@@ -184,7 +184,7 @@
     <ClCompile Include="WildCurve.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StPetersburg.h" />
+    <ClInclude Include="Geometry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "StPetersburg.h"
+#include "Geometry.h"
 
 #include "Slide.h"
 
@@ -25,7 +25,7 @@ namespace
 	bool ellipse::enter(show::show const& s)
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_bg.prepare(s.res_root() + "Geometry St Petersburg (76).png");
+		m_bg.prepare(s.res_root() + "Geometry (76).png");
 		return true;
 	}
 

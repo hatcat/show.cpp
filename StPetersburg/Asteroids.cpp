@@ -1,4 +1,4 @@
-#include "StPetersburg.h"
+#include "Geometry.h"
 
 #include "Slide.h"
 
@@ -1060,7 +1060,7 @@ namespace
 	bool rocks_in_space::enter(show::show const& s)
 	{
 		scale_to_screen.surface_matrix(matrix_2d::create_scale({ scale_factor, scale_factor }) * matrix_2d::create_translate({ move_x, move_y }));
-		m_bg.prepare(s.res_root() + "Geometry St Petersburg (79).png");
+		m_bg.prepare(s.res_root() + "Geometry (79).png");
 		return true;
 	}
 

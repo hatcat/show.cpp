@@ -30,6 +30,6 @@
     <ClCompile Include="Credits.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StPetersburg.h" />
+    <ClInclude Include="Geometry.h" />
   </ItemGroup>
 </Project>

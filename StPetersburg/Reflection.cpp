@@ -1,4 +1,4 @@
-#include "StPetersburg.h"
+#include "Geometry.h"
 
 #include "Slide.h"
 
@@ -25,7 +25,7 @@ namespace
 	bool reflection::enter(show::show const& s)
 	{
 		m_entry_point = std::chrono::steady_clock::now();
-		m_bg.prepare(s.res_root() + "Geometry St Petersburg (33).png");
+		m_bg.prepare(s.res_root() + "Geometry (33).png");
 		return true;
 	}
 
