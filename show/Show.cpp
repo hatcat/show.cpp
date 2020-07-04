@@ -16,13 +16,13 @@ namespace
 		auto start = cmd_line.find("-res_root=\"");
 		if (start == std::string::npos)
 		{
-			return "..\\res\\";
+			return {};
 		}
 		start += 11;
 		auto end = cmd_line.find("\"", start);
 		if (end == std::string::npos)
 		{
-			return "";
+			return {};
 		}
 		return cmd_line.substr(start, end - start);
 	}
@@ -158,7 +158,7 @@ std::string const& show::show::res_root() const
 	return m_res_root;
 }
 
-int CALLBACK WinMain(HINSTANCE hInst, HINSTANCE, LPSTR cmd_line, int)
+int CALLBACK WinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE, _In_ LPSTR cmd_line, _In_ int)
 {
 	show::Win32Win s(hInst, cmd_line);
 	return s.Run();

@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "show", "show\show.vcxproj",
 		{666B7110-5287-4820-AFF5-45F40C5A5FAB} = {666B7110-5287-4820-AFF5-45F40C5A5FAB}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StPetersburg", "StPetersburg\StPetersburg.vcxproj", "{5D6C0754-5A7D-4AC0-822D-080DC66CDBBA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Geometry", "Geometry\Geometry.vcxproj", "{5D6C0754-5A7D-4AC0-822D-080DC66CDBBA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F544E582-56A2-4E19-BD4A-F8F76E2EEDFD} = {F544E582-56A2-4E19-BD4A-F8F76E2EEDFD}
 	EndProjectSection
